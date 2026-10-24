@@ -101,18 +101,24 @@ export function PageHeading({
 export function ActivityCard({
   spark,
   compact = false,
+  featured = false,
   reasons = [],
   window = spark.windows[0],
 }: {
   spark: Spark;
   compact?: boolean;
+  featured?: boolean;
   reasons?: string[];
   window?: TimeWindow;
 }) {
   const { state, mutate, notify } = useApp();
   const saved = state.saved.includes(spark.id);
+  const remaining = Math.max(0, spark.target - spark.participantIds.length);
+  const confirmed = ["CONFIRMED", "COMPLETED"].includes(spark.status);
   return (
-    <article className={`activity-card ${compact ? "compact-card" : ""}`}>
+    <article
+      className={`activity-card ${compact ? "compact-card" : ""} ${featured ? "featured-card" : ""}`}
+    >
       <Link
         href={`/sparks/${spark.id}`}
         tabIndex={-1}
@@ -120,12 +126,24 @@ export function ActivityCard({
         className="card-art-link"
       >
         <ActivityArt category={spark.category} />
-        <span className="card-art-status">
-          {spark.hubId &&
-          state.hubs.find((h) => h.id === spark.hubId)?.visibility === "private"
-            ? "Private community"
-            : "Community Spark"}
-        </span>
+        {featured ? (
+          <span className="featured-date">
+            <span className="featured-date-caption">
+              <CalendarDays size={14} />
+              {confirmed ? "Confirmed time" : "Proposed time"}
+            </span>
+            <time dateTime={window.start}>{dateLabel(window.start)}</time>
+            <span>{timeLabel(window.start)} MYT</span>
+          </span>
+        ) : (
+          <span className="card-art-status">
+            {spark.hubId &&
+            state.hubs.find((h) => h.id === spark.hubId)?.visibility ===
+              "private"
+              ? "Private community"
+              : "Community Spark"}
+          </span>
+        )}
       </Link>
       <div className="activity-body">
         <div className="card-topline">
@@ -148,23 +166,51 @@ export function ActivityCard({
           {spark.title}
         </Link>
         <p className="card-description">{spark.description}</p>
+        {featured && (
+          <div className="featured-location">
+            <MapPin size={15} aria-hidden="true" />
+            <span>{spark.city}</span>
+            {spark.skill && (
+              <span className="featured-skill">{spark.skill}</span>
+            )}
+          </div>
+        )}
         {reasons.length > 0 && (
           <div className="match-reasons">
             <Check size={12} />
             {reasons.slice(0, 2).join(" · ")}
           </div>
         )}
-        <div className="card-meta">
-          <span>
-            <MapPin size={14} />
-            {spark.city}
-          </span>
-          <span>
-            <CalendarDays size={14} />
-            {dateLabel(window.start)}
-          </span>
-          <span className="card-time">{timeLabel(window.start)} MYT</span>
-        </div>
+        {!featured && (
+          <div className="card-meta">
+            <span>
+              <MapPin size={14} />
+              {spark.city}
+            </span>
+            <span>
+              <CalendarDays size={14} />
+              {dateLabel(window.start)}
+            </span>
+            <span className="card-time">{timeLabel(window.start)} MYT</span>
+          </div>
+        )}
+        {featured && (
+          <div className="featured-availability">
+            <Users size={15} aria-hidden="true" />
+            <span>
+              {spark.participantIds.length} of {spark.target} people
+            </span>
+            <strong>
+              {confirmed
+                ? spark.status === "COMPLETED"
+                  ? "Session completed"
+                  : "Session confirmed"
+                : remaining > 0
+                  ? `${remaining} ${remaining === 1 ? "place" : "places"} to fill`
+                  : "People connected"}
+            </strong>
+          </div>
+        )}
         <div className="card-bottom">
           <div className="avatar-stack">
             {spark.participantIds.slice(0, 3).map((p, i) => (
@@ -185,6 +231,7 @@ export function ActivityCard({
             aria-label={`View ${spark.title}`}
             onClick={() => notify("")}
           >
+            {featured && <span>View plan</span>}
             <ArrowRight size={18} />
           </Link>
         </div>
@@ -199,7 +246,7 @@ export function ActivityCard({
             }}
           />
         </div>
-        {spark.status === "BLOCKED" && (
+        {!featured && spark.status === "BLOCKED" && (
           <div className="card-blocker">
             <Zap size={13} />
             {spark.requirements.length === 1
@@ -207,7 +254,7 @@ export function ActivityCard({
               : "A few missing pieces"}
           </div>
         )}
-        {["CONFIRMED", "COMPLETED"].includes(spark.status) && (
+        {!featured && confirmed && (
           <div className="card-confirmed">
             <Check size={13} />{" "}
             {spark.status === "COMPLETED"

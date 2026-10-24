@@ -261,15 +261,20 @@ export function Dashboard() {
           </section>
         </aside>
       </div>
-      <section className="home-recommendations">
+      <section
+        className="home-recommendations"
+        aria-labelledby="recommended-plans-title"
+      >
         <div className="section-heading">
           <div>
-            <span className="eyebrow">Something to look forward to</span>
-            <h2>A few plans you might like</h2>
-            <p>Picked around your interests, city and availability.</p>
+            <span className="eyebrow">Picked for you</span>
+            <h2 id="recommended-plans-title">Your next plan starts here.</h2>
+            <p>
+              A game, a study session, a reason to get together. See what fits.
+            </p>
           </div>
           <Link href="/explore" className="text-link">
-            Explore all <ArrowRight size={15} />
+            Browse all plans <ArrowRight size={15} />
           </Link>
         </div>
         <div className="activity-grid home-recommendation-grid">
@@ -279,6 +284,7 @@ export function Dashboard() {
                 key={s.id}
                 spark={s}
                 reasons={matchReasons(s, state.profile)}
+                featured
               />
             ))
           ) : (
@@ -296,10 +302,11 @@ export function Dashboard() {
               <MapPin size={23} />
             </span>
             <div>
-              <h3>Good company, closer to home.</h3>
+              <span className="home-help-label">Around your area</span>
+              <h3>Find your people nearby</h3>
               <p>
-                Find shared interests around {state.profile.city || "your area"}
-                .
+                Explore shared interests around{" "}
+                {state.profile.city || "your area"}.
               </p>
             </div>
             <ArrowRight size={19} />
@@ -310,8 +317,11 @@ export function Dashboard() {
             <Zap size={23} />
           </span>
           <div>
-            <h3>A plan missing a piece?</h3>
-            <p>Let UNLOCK look for people, places and resources.</p>
+            <span className="home-help-label">Make it possible</span>
+            <h3>Give your plan a way forward</h3>
+            <p>
+              UNLOCK can help find a missing player, resource or shared time.
+            </p>
           </div>
           <ArrowRight size={19} />
         </Link>
