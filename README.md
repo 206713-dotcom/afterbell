@@ -4,6 +4,12 @@
 
 A Malaysia-wide community MVP for study circles, approved peer tutoring, badminton, and other activities. The UNLOCK Engine searches explainable combinations of people, equipment, rooms, and supplied time windows. It creates proposals; it never supplies consent or books a venue.
 
+## Try the competition demo
+
+[Open AfterBell](https://afterbell-sepia.vercel.app) and choose **Try the live demo**. No account is required. The demo uses the real UNLOCK engine with clearly labelled fictional people, communities and activities. Changes stay in your browser.
+
+This hosted deployment provides the interactive demo. Online account registration and shared account data require a configured Supabase project and remain unavailable on this deployment. Persistent local accounts still work when running the project on your own computer.
+
 ## Run it
 
 Use Node.js 24 and npm.
@@ -108,7 +114,9 @@ Read [the demo script](docs/DEMO.md). The original fixtures are fixed to **24–
 
 Import this repository into Vercel using the Next.js framework preset and Node 24 (or a currently supported compatible Node runtime). Use `npm ci`, `npm run build`, and the default Next.js output settings. Add the same public Supabase variables separately for Preview and Production. Set `NEXT_PUBLIC_SITE_URL` to the correct deployment origin, configure Supabase's allowlist accordingly, then redeploy after changing public variables.
 
-Apply the database migration to the intended project before exercising live routes. Set `NEXT_PUBLIC_ENABLE_DEMO=false` if you want a live-only deployment. Demo cookies never authenticate `/api/state`, `/api/mutate`, or `/api/invite`. No deployment was performed during this implementation.
+Apply the database migration to the intended project before exercising live routes. Set `NEXT_PUBLIC_ENABLE_DEMO=false` if you want a live-only deployment. Demo cookies never authenticate `/api/state`, `/api/mutate`, or `/api/invite`.
+
+The public competition demo uses the `afterbell` Vercel project, Node 24 and the Next.js preset. Its production branch is `codex/afterbell`, connected to this GitHub repository. Pushes to that branch automatically deploy updates. The production environment enables the fictional demo and disables local accounts. Private local data, environment files and build/test output are excluded from uploads.
 
 ## Architecture, limitations and assistance
 
