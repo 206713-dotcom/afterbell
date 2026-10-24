@@ -1,6 +1,6 @@
 # Individual accounts and communities
 
-Updated 22 October 2026.
+Updated 24 October 2026.
 
 Open `/auth`, choose **Create an account**, enter an email and password (at least ten characters), and save the recovery key. Complete the three profile steps. Use **Sign out** in the account bar; returning users sign in with their email/password. Forgotten passwords can be reset with the email and recovery key. Resetting revokes existing sessions and replaces the key.
 
@@ -20,6 +20,6 @@ Sparks support own-only drafts and publication, community preselection, academic
 
 `npm run test:e2e` builds `.next-test`, runs a production server on port 3100, and uses `.local/browser-accounts/afterbell.sqlite`. Test users never seed the normal account database. Unit tests use temporary SQLite and embedded PostgreSQL databases. Development uses Webpack and excludes database files from its watcher.
 
-Hosted verification, SMTP, OAuth and Supabase/PostgREST require project configuration and deployment testing. Apply all five migrations in order before using hosted community and conversation controls.
+The public Vercel deployment now uses a dedicated Supabase project with all five migrations applied, rather than local SQLite. Disposable adult and youth accounts passed password sign-in, session refresh, profile onboarding and state-function checks; authenticated reads and profile writes also passed through the public API. Hosted signup email delivery and password recovery are still awaiting custom SMTP setup. Email confirmation remains enabled, and no successful delivery or OAuth test is claimed. Local accounts do not automatically transfer to the hosted database.
 
 The production build excludes local databases, test records and private environment files from deployment manifests and checks the resulting traces. The local database remains on the running installation; deployment does not transfer it.

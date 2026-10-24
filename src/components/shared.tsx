@@ -122,7 +122,7 @@ export function ActivityCard({
       <Link
         href={`/sparks/${spark.id}`}
         tabIndex={-1}
-        aria-hidden="true"
+        aria-hidden={featured ? undefined : true}
         className="card-art-link"
       >
         <ActivityArt category={spark.category} />

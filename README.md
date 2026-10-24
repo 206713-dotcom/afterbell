@@ -8,7 +8,7 @@ A Malaysia-wide community MVP for study circles, approved peer tutoring, badmint
 
 [Open AfterBell](https://afterbell-sepia.vercel.app) and choose **Try the live demo**. No account is required. The demo uses the real UNLOCK engine with clearly labelled fictional people, communities and activities. Changes stay in your browser.
 
-This hosted deployment provides the interactive demo. Online account registration and shared account data require a configured Supabase project and remain unavailable on this deployment. Persistent local accounts still work when running the project on your own computer.
+The hosted deployment is connected to Supabase for individual accounts and shared data. Password sign-in, profile persistence and sessions have been checked through the public site using disposable test accounts. Public email registration and password-reset delivery are awaiting the custom email sender setup; use the fictional demo while that is completed. Persistent local accounts still work when running the project on your own computer and are separate from hosted accounts.
 
 ## Run it
 
@@ -61,7 +61,7 @@ The visible user messages in **“Find AI Coding Challenge”** were also consul
 
 ## Configure Supabase
 
-**Live Supabase Auth, email delivery, and hosted database connectivity have not been tested here: no project credentials were provided.** The local demo, embedded PostgreSQL policies/transactions, and browser workflows are independently tested.
+The production Supabase project was provisioned on 24 October 2026, and all five migrations were applied. Hosted password sign-in, session refresh, profile writes and authenticated state reads have passed real deployment checks with disposable accounts. Email delivery and public email registration are not yet verified: custom SMTP setup is in progress. Email confirmation remains enabled. The following steps also describe how to configure a separate installation.
 
 1. Create a Supabase project or use a dedicated development project. Apply the five files in `supabase/migrations/` in filename order, through `202610220005_social.sql`. Apply only missing migrations when the foundation exists. These expect Supabase's `auth.users`, `auth.uid()`, `anon`, and `authenticated`; the foundation backfills existing Auth profiles. They are ordered migrations, not reset scripts.
 2. Copy `.env.example` to `.env.local`. Set `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (the public anon/publishable key), and your `NEXT_PUBLIC_SITE_URL`. **Do not use a service-role or secret key.** Restart Next.js after changing public environment variables.
