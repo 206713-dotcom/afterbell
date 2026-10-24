@@ -1,0 +1,10 @@
+.git/
+.local/
+.env*
+node_modules/
+.next/
+.next-test/
+coverage/
+playwright-report/
+test-results/
+docs/NEIGHBORHOOD-HACKS-PITCH.md

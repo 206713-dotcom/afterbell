@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.next-test/
+.env*
+!.env.example
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.vercel/
+.local/
+docs/NEIGHBORHOOD-HACKS-PITCH.md

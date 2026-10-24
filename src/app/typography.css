@@ -1,0 +1,413 @@
+/* Larger reading sizes, with editorial accents reserved for welcome headlines. */
+body {
+  font-size: 16px;
+  line-height: 1.65;
+}
+.eyebrow {
+  font-size: 11px;
+  line-height: 1.7;
+}
+.auth-form-wrap {
+  max-width: 600px;
+  padding: 38px 44px;
+}
+.auth-form-nav {
+  margin-bottom: 36px;
+}
+.auth-form-nav .back-link {
+  font-size: 13px;
+}
+.auth-form-heading .eyebrow,
+.auth-demo-panel > .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+}
+.auth-form-heading h1 {
+  font-size: clamp(48px, 4.7vw, 66px);
+  font-weight: 550;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  margin-top: 14px;
+  text-wrap: balance;
+}
+.auth-form-heading h1 em {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 1.12em;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: #496647;
+}
+.auth-form-heading > p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: #52614e;
+  margin-top: 21px;
+  max-width: 44ch;
+}
+.auth-story .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+}
+.auth-story .auth-story-title {
+  font-size: clamp(56px, 5.25vw, 80px);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+.auth-story-title em {
+  font-size: 1.15em;
+}
+.auth-story .auth-story-description {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 37ch;
+  color: #e0e4d2;
+}
+.auth-story-footer {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.auth-tabs {
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.auth-tabs button {
+  font-size: 15px;
+  min-height: 50px;
+}
+.auth-form-wrap .field label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.auth-form-wrap .field input {
+  font-size: 17px;
+  min-height: 56px;
+  padding-block: 13px;
+}
+.auth-form-wrap .field small {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.auth-small-link {
+  font-size: 14px;
+  min-height: 32px;
+}
+.auth-form-wrap form > .button {
+  font-size: 16px;
+  min-height: 57px;
+  padding-inline: 21px;
+}
+.auth-config-note,
+.auth-config-note p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #55644c;
+}
+.auth-demo-panel {
+  margin-top: 30px;
+  padding-top: 28px;
+}
+.auth-demo-panel h2 {
+  font-size: 38px;
+  line-height: 1.15;
+}
+.auth-demo-panel > p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #55644c;
+}
+.auth-demo-panel .button {
+  font-size: 15px;
+  min-height: 51px;
+}
+.auth-demo-panel > .auth-demo-note {
+  font-size: 12px;
+}
+.auth-form-wrap .recovery-card h2 {
+  font-size: 30px;
+}
+.auth-form-wrap .recovery-card p {
+  font-size: 15px;
+}
+.auth-form-wrap .recovery-card .button {
+  font-size: 14px;
+  white-space: normal;
+  text-align: left;
+}
+
+.landing-hero h1 {
+  font-size: clamp(56px, 6.2vw, 92px);
+  line-height: 1.05;
+}
+.landing-hero-copy > p {
+  font-size: 19px;
+  line-height: 1.8;
+  max-width: 43ch;
+}
+.landing-kicker {
+  font-size: 13px;
+}
+.landing-hero-actions .button {
+  font-size: 16px;
+  min-height: 54px;
+}
+.landing-value-strip {
+  font-size: 14px;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.landing-section h2,
+.landing-cta h2 {
+  font-size: clamp(40px, 4.1vw, 60px);
+  line-height: 1.12;
+}
+.landing-section-header > p,
+.landing-communities > div > p,
+.landing-unlock-inner > div > p,
+.landing-cta > p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+.landing-category-card h3,
+.landing-how-grid h3 {
+  font-size: 25px;
+  line-height: 1.25;
+}
+.landing-category-card p,
+.landing-how-grid p,
+.community-paths p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.landing-category-label {
+  font-size: 11px;
+}
+
+.page-heading h1,
+.home-page .greeting-header h1 {
+  font-size: clamp(38px, 3.9vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+}
+.page-heading > div > p,
+.home-page .greeting-header p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: #55634f;
+  max-width: 64ch;
+}
+.page-heading {
+  gap: 24px;
+  align-items: start;
+}
+.page-heading > div {
+  min-width: 0;
+}
+.page-heading > .button {
+  flex-shrink: 0;
+}
+.sidebar .nav-item,
+.navigation-drawer .nav-item {
+  font-size: 14px;
+}
+.page-content .button {
+  font-size: 14px;
+}
+.page-content .field label,
+.page-content .field-label {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.page-content .field input,
+.page-content .field select,
+.page-content .field textarea {
+  font-size: 16px;
+}
+.page-content .field small {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.page-content .form-section h3 {
+  font-size: 22px;
+}
+.onboarding > h1 {
+  font-size: clamp(38px, 4vw, 54px);
+  line-height: 1.12;
+}
+.onboarding > p {
+  font-size: 17px;
+  line-height: 1.75;
+}
+.onboarding .field label {
+  font-size: 15px;
+}
+.onboarding .field input,
+.onboarding .field select {
+  font-size: 16px;
+}
+.activity-card .card-title {
+  font-size: 24px;
+  line-height: 1.3;
+  -webkit-line-clamp: 3;
+  min-height: 0;
+}
+.activity-card .card-description,
+.place-card > p,
+.hub-card > p,
+.school-card-description {
+  font-size: 15px;
+  line-height: 1.8;
+}
+.place-card .place-address {
+  font-size: 14px;
+}
+.activity-card .card-meta {
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.place-card-links {
+  font-size: 14px;
+}
+.next-move b,
+.plan-row-copy > b {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.next-move small,
+.plan-row-copy small {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.next-moves-heading > p,
+.plans-section > .section-heading p,
+.home-recommendations .section-heading p {
+  font-size: 15px;
+}
+.intent-grid b {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.intent-grid small {
+  font-size: 12px;
+}
+.chat-header p,
+.conversation-placeholder p,
+.chat-first-message p,
+.chat-locked p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+.message-content > p {
+  font-size: 15px;
+  line-height: 1.75;
+}
+.connection-row b {
+  font-size: 15px;
+}
+.connection-row small {
+  font-size: 12px;
+}
+.connection-row .connection-preview {
+  font-size: 13px;
+}
+.connection-row .connection-time {
+  font-size: 11px;
+}
+
+@media (min-width: 901px) and (max-width: 1150px) {
+  .auth-form-wrap {
+    padding: 32px 27px;
+  }
+  .auth-form-heading h1 {
+    font-size: 51px;
+  }
+  .auth-story .auth-story-title {
+    font-size: 57px;
+  }
+  .auth-story .auth-story-description {
+    font-size: 17px;
+  }
+  .auth-story-footer {
+    font-size: 11px;
+  }
+}
+@media (max-width: 900px) {
+  .auth-form-wrap {
+    max-width: 600px;
+    padding: 32px 38px 48px;
+  }
+  .auth-form-heading h1 {
+    font-size: 60px;
+  }
+}
+@media (max-width: 760px) {
+  .auth-form-wrap {
+    padding: 27px 24px 42px;
+  }
+  .auth-form-nav {
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .auth-form-nav .back-link {
+    font-size: 12px;
+  }
+  .auth-form-heading h1 {
+    font-size: clamp(47px, 12.8vw, 57px);
+    line-height: 1.06;
+  }
+  .auth-form-heading > p {
+    font-size: 17px;
+    margin-top: 18px;
+  }
+  .auth-tabs {
+    gap: 26px;
+  }
+  .auth-tabs button {
+    font-size: 15px;
+  }
+  .auth-demo-panel h2 {
+    font-size: 36px;
+  }
+  .auth-demo-panel > p {
+    font-size: 15px;
+  }
+  .landing-hero h1 {
+    font-size: clamp(45px, 10.8vw, 64px);
+  }
+  .landing-hero-copy > p {
+    font-size: 17px;
+  }
+  .landing-hero-actions .button {
+    font-size: 15px;
+  }
+  .landing-section h2,
+  .landing-cta h2 {
+    font-size: clamp(36px, 8.5vw, 46px);
+  }
+  .landing-section-header > p,
+  .landing-communities > div > p,
+  .landing-unlock-inner > div > p,
+  .landing-cta > p {
+    font-size: 16px;
+  }
+  .page-heading h1,
+  .home-page .greeting-header h1 {
+    font-size: clamp(36px, 8.7vw, 43px);
+  }
+  .page-heading > div > p,
+  .home-page .greeting-header p {
+    font-size: 16px;
+  }
+  .page-heading {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .activity-card .card-title {
+    font-size: 23px;
+  }
+  .activity-card .card-description {
+    font-size: 14px;
+  }
+  .home-recommendation-grid .activity-body {
+    min-width: 0;
+  }
+}

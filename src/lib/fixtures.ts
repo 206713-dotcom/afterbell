@@ -1,0 +1,300 @@
+import type { AppState, Candidate, Hub, Spark, TimeWindow } from "./types";
+import { nearbyPeople } from "./nearby-fixtures";
+import { upgradeDemoCommunities } from "./community-fixtures";
+export const saturday: TimeWindow = {
+  start: "2026-10-24T09:00:00+08:00",
+  end: "2026-10-24T11:00:00+08:00",
+};
+export const afternoon: TimeWindow = {
+  start: "2026-10-24T14:00:00+08:00",
+  end: "2026-10-24T16:00:00+08:00",
+};
+export const sunday: TimeWindow = {
+  start: "2026-10-25T10:00:00+08:00",
+  end: "2026-10-25T12:00:00+08:00",
+};
+export const hubs: Hub[] = [
+  {
+    id: "pj-club",
+    name: "PJ Social Club",
+    city: "Petaling Jaya",
+    description:
+      "Good games. New friends. A community for the everyday things that bring us together.",
+    visibility: "public",
+    youthApproved: false,
+    approved: true,
+    category: "badminton",
+    members: 6,
+  },
+  {
+    id: "school-hub",
+    name: "Meranti Learning Collective",
+    city: "Kuala Lumpur",
+    description:
+      "A fictional, moderated school hub for curious minds. Approved members and tutors only.",
+    visibility: "private",
+    youthApproved: true,
+    approved: true,
+    category: "study",
+    members: 8,
+    joined: true,
+  },
+  {
+    id: "penang-makers",
+    name: "Penang Weekend Makers",
+    city: "George Town",
+    description:
+      "Build something with your neighbours. Coding, creative projects, and a little kopi.",
+    visibility: "public",
+    youthApproved: false,
+    approved: true,
+    category: "community",
+    members: 4,
+  },
+  {
+    id: "jb-learners",
+    name: "Johor Learning Circle",
+    city: "Johor Bahru",
+    description:
+      "An adult community for learning new skills and sharing what you know.",
+    visibility: "public",
+    youthApproved: false,
+    approved: true,
+    category: "study",
+    members: 3,
+  },
+];
+const sparkBase = {
+  ownerId: "demo-you",
+  status: "BLOCKED" as const,
+  budget: 40,
+  createdAt: "2026-10-18T08:00:00Z",
+  saved: false,
+};
+export const sparks: Spark[] = [
+  {
+    ...sparkBase,
+    id: "saturday-doubles",
+    title: "One more for Saturday doubles?",
+    description:
+      "A friendly morning on the court. We have three players and a venue lined up — we just need our fourth. Intermediate, relaxed games with time for a drink after. This is a fictional demo session; no court has been booked.",
+    category: "badminton",
+    city: "Petaling Jaya",
+    hubId: null,
+    target: 4,
+    participantIds: ["demo-you", "adam", "mei"],
+    windows: [saturday, afternoon],
+    requirements: [
+      { id: "player", kind: "participant", quantity: 1, skill: "intermediate" },
+    ],
+    skill: "Intermediate",
+  },
+  {
+    ...sparkBase,
+    id: "maths-circle",
+    title: "Make maths make sense, together.",
+    description:
+      "An IGCSE maths revision circle in our approved school hub. Five learners, one goal: feeling ready. Looking for an approved peer tutor and an appropriate room.",
+    category: "tutoring",
+    city: "Kuala Lumpur",
+    hubId: "school-hub",
+    target: 6,
+    participantIds: ["youth-1", "youth-2", "youth-3", "youth-4", "youth-5"],
+    windows: [saturday, afternoon],
+    requirements: [
+      { id: "tutor", kind: "tutor", quantity: 1, skill: "Maths" },
+      { id: "room", kind: "room", quantity: 1, capacity: 6 },
+    ],
+    skill: "IGCSE",
+  },
+  {
+    ...sparkBase,
+    id: "code-and-kopi",
+    title: "Code, kopi & a side project",
+    description:
+      "Bring a project, bring a question, or just bring yourself. A low-pressure coding session for curious people. We need a shared projector for the walkthrough.",
+    category: "community",
+    city: "George Town",
+    hubId: null,
+    target: 4,
+    participantIds: ["demo-you", "jia", "iman", "raj"],
+    windows: [saturday, afternoon],
+    requirements: [{ id: "projector", kind: "projector", quantity: 1 }],
+    skill: "All levels",
+  },
+  {
+    ...sparkBase,
+    id: "design-workshop",
+    title: "Good ideas deserve a first draft",
+    description:
+      "A hands-on design workshop for weekend makers. Let's turn that idea in your notes app into something real. Shares a projector with the coding session at a different time.",
+    category: "community",
+    city: "George Town",
+    hubId: null,
+    target: 3,
+    participantIds: ["nora", "jia", "raj"],
+    windows: [saturday, afternoon],
+    requirements: [{ id: "projector", kind: "projector", quantity: 1 }],
+    skill: "Beginner friendly",
+  },
+  {
+    ...sparkBase,
+    id: "physics-study",
+    ownerId: "host-lin",
+    title: "Less cramming. More understanding.",
+    description:
+      "A collaborative physics study session for adult learners. Bring the questions you haven't quite cracked yet. A welcoming group with complementary strengths.",
+    category: "study",
+    city: "Johor Bahru",
+    hubId: null,
+    target: 5,
+    participantIds: ["lin", "dev", "sara"],
+    windows: [sunday],
+    requirements: [
+      { id: "learners", kind: "participant", quantity: 2, skill: "Physics" },
+    ],
+    skill: "Pre-university",
+  },
+  {
+    ...sparkBase,
+    id: "sunset-shuttles",
+    title: "Shuttles before the sunset",
+    description:
+      "Beginner-friendly badminton. All you need is a willingness to try. A fictional demo activity, with venue confirmation still required.",
+    category: "badminton",
+    city: "Kuala Lumpur",
+    hubId: null,
+    target: 4,
+    participantIds: ["nora", "amir"],
+    windows: [sunday],
+    requirements: [
+      { id: "players", kind: "participant", quantity: 2 },
+      { id: "court", kind: "venue", quantity: 1, capacity: 4 },
+    ],
+    skill: "Beginner friendly",
+  },
+];
+const offerBase = {
+  hubId: null,
+  age: "adult" as const,
+  approved: true,
+  optedIn: true,
+  windows: [saturday, afternoon, sunday],
+  quantity: 1,
+  capacity: 20,
+  cost: 0,
+  commitments: 0,
+  needs: [],
+  reservations: [],
+};
+export const candidates: Candidate[] = [
+  {
+    ...offerBase,
+    id: "player-hana",
+    ownerId: "hana",
+    label: "Hana · intermediate player",
+    kind: "participant",
+    city: "Petaling Jaya",
+    skills: ["intermediate"],
+    needs: [{ id: "racket", kind: "racket", quantity: 1 }],
+  },
+  {
+    ...offerBase,
+    id: "racket-adam",
+    ownerId: "adam",
+    label: "Adam's spare racket",
+    kind: "racket",
+    city: "Petaling Jaya",
+    skills: [],
+  },
+  {
+    ...offerBase,
+    id: "peer-tutor",
+    ownerId: "tutor-sam",
+    label: "Sam · approved maths peer tutor",
+    kind: "tutor",
+    city: "Kuala Lumpur",
+    hubId: "school-hub",
+    skills: ["Maths"],
+    windows: [afternoon],
+  },
+  {
+    ...offerBase,
+    id: "school-room",
+    ownerId: "hub-admin",
+    label: "Meranti · approved learning room",
+    kind: "room",
+    city: "Kuala Lumpur",
+    hubId: "school-hub",
+    skills: [],
+    capacity: 8,
+    windows: [afternoon],
+  },
+  {
+    ...offerBase,
+    id: "shared-projector",
+    ownerId: "organizer-lee",
+    label: "Lee's shared projector",
+    kind: "projector",
+    city: "George Town",
+    skills: [],
+  },
+  {
+    ...offerBase,
+    id: "learner-a",
+    ownerId: "aisha",
+    label: "Aisha · physics study partner",
+    kind: "participant",
+    city: "Johor Bahru",
+    skills: ["Physics"],
+  },
+  {
+    ...offerBase,
+    id: "learner-b",
+    ownerId: "daniel",
+    label: "Daniel · physics study partner",
+    kind: "participant",
+    city: "Johor Bahru",
+    skills: ["Physics"],
+  },
+];
+export function demoState(): AppState {
+  return upgradeDemoCommunities(
+    structuredClone({
+      profile: {
+        id: "demo-you",
+        name: "Alex",
+        city: "Petaling Jaya",
+        age: "adult",
+        interests: ["Badminton", "Study", "Community"],
+        availability: ["Weekend mornings", "Weekend afternoons"],
+        experience: "Intermediate",
+        subjects: ["Maths", "Physics"],
+        communityTypes: ["Public communities", "Private hubs"],
+        onboarded: true,
+        discoverable: true,
+      },
+      hubs,
+      sparks,
+      candidates,
+      nearbyPeople,
+      nearbySettings: {
+        areaId: "petaling-jaya",
+        bio: "Up for a weekend game or a good study circle.",
+        visible: false,
+      },
+      proposals: [],
+      reports: [],
+      blocked: [],
+      joined: ["school-hub"],
+      saved: [],
+      notifications: [
+        {
+          id: "welcome",
+          text: "Welcome to your demo neighbourhood. Every person and activity here is fictional.",
+          read: false,
+        },
+      ],
+    }),
+  );
+}
